@@ -1,0 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.pyc
+*.DS_STORE
+
+.idea/
+cd.txt
+/d/
+/venv/
+
+core
+db
+temp
+config.py
+*.sh
+*.bat
+
+cats.txt
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt

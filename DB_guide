@@ -1,0 +1,14 @@
+Create the database
+
+Create a database for jobporte's data.
+
+$ sudo -u postgres createdb -E utf8 jobporte
+And a user for the code to connect with.
+
+$ sudo -u postgres psql jobporte
+> CREATE USER jobporte WITH PASSWORD '****';
+> \q
+Then add jobporte's SQL functions to the schema.
+
+$ cd ~/jobporte/
+$ sudo -u postgres psql jobporte < sql/functions.sql
