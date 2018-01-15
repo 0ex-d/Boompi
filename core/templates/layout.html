@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" itemscope itemtype="http://schema.org/WebSite"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" itemscope itemtype="http://schema.org/WebSite"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" itemscope itemtype="http://schema.org/WebSite"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" itemscope itemtype="http://schema.org/WebSite">
+<!--<![endif]-->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="google-site-verification" content="{{config.META_GOOGL_VERI}}">
+    <meta name="robots" content="{{config.META_ROBOTS_VERI}}">
+    <meta name="googlebot" content="{{config.META_ROBOTS_VERI}}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon-32x32.png') }}" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon-16x16.png') }}" sizes="16x16" />
+
+    {%- if landing_pg %}
+    <title>{{ title }} | {{config.BRAND}}</title>
+    {% else %}
+    <title>{{ title }} — {{config.BRAND}}</title>
+    {% endif -%}
+
+    {%- if page_des %}
+    <meta name="description" content="{{ page_des }}">
+    {% else %}
+    <meta name="description" content="{{config.DESCRIPTION}}">
+    {%- endif %}
+    <meta name="author" content="{{config.BRAND}}">
+    <meta name="keywords" content="">
+
+    <link href="{{ url_for('static', filename='stylesheets/base.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='stylesheets/main.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='stylesheets/sm2/360player.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='stylesheets/slick/slick.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='stylesheets/custom.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='stylesheets/track-view.css') }}" rel="stylesheet" type="text/css">
+    {#<link href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">#}
+
+    <style type="text/css">
+         :root div[style*="visibility:"] {
+            display: none !important;
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "{{config.BRAND}}",
+        "description": "",
+        "url": "",
+        "logo": "",
+        "sameAs": [
+            "fb",
+            "tw",
+            "ig"
+        ]
+    }
+    </script>
+    
+</head>
+
+<body class="{% if bdy_class %} {{ bdy_class }} {% endif %}">
+    <noscript>
+      <div class="alert alert-error">We're sorry, some parts of the {{config.BRAND}} website don't work properly without JavaScript enabled.</div>
+    </noscript>
+    
+    {%- with msgs = get_flashed_messages(with_categories=true) %}
+        {%- if msgs %}
+            {%- for category, msg in msgs %}
+            <div class="alert alert-{{category}}">
+                {{msg}}<a class="alert_close close" alt="Close" href="#">&times;</a> 
+            </div>
+            {% endfor -%}
+        {% endif -%}
+    {% endwith -%}
+
+    {% include "top_nav_bar.html" %}
+
+	<div id="content" class="main-content" role="main" aria-live="polite">
+
+        {% include "nav_bar.html" %}
+
+        {%- if anouncement %}
+        <div class="nag-bar nag-bar--plybar-masthead-release-warning" role="status">
+            <div class="container">
+                <p class="nag-bar-message">
+                    A new version of boompi.com is available, to keep everything running smoothly, please <a href="javascript:window.location.reload()">reload</a> the site.
+                </p>
+            </div>
+        </div>
+        {% endif -%}
+
+        {% block hero_slider %} {% endblock %}
+
+        <!-- Split container holder -->
+        <div id="mantle_skin" class="adaptive-skin-container">
+            <div class="adaptive-skin-wrapper">
+                <div id="adSkinLeft" class="adaptive-skin-left"></div>
+                <div id="adSkinRight" class="adaptive-skin-right"></div>
+            </div>
+        
+            <div class="content-top">
+
+                {% block content_top %} {% endblock %}
+
+            </div>
+
+            <div class="{% if landing_pg %}container {% else %} container2{% endif %} page-content">
+                <!-- <div class="row"> -->
+                    <div class="{% if landing_pg %}col-mai col-md-8{% else %} container2-col container2-col--primary{% endif %}">
+
+                    {% block body %} {% endblock %}
+
+                    </div>
+
+                    <!-- richtige -->
+                    <div class="{% if landing_pg %}col-sideba col-md-3{% else %} container2-col container2-col--secondary container2-col--flex{% endif %}">
+                        {% include "right_side_bar.html" %}
+                    </div>
+
+                <!-- </div> -->
+            </div>
+
+        </div>
+
+        {% include "footer.html" %}
+
+    </div>
+
+    
+
+</body>
+<script type="text/javascript">
+    var BaseUrl = "{{ config.ROOT_URL }}";
+    var tempBase = "{{ config.STATIC_URL }}";
+    var uploadBase = "{{ config.UPLOAD_BUCKET }}";
+</script>
+
+{#<script type="text/javascript" src="{{ url_for('static', filename='javascripts/bootstrap.min.js') }}"></script>#}
+<script type="text/javascript" src="{{ url_for('static', filename='javascripts/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascripts/slick/slick.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascripts/sm2/berniecode-animator.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascripts/sm2/soundmanager2-jsmin.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascripts/sm2/360player.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascripts/main.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascripts/auth.js') }}"></script>
+<script>
+    (function(e) {
+        e.className = e.className.replace(/\bno-js\b/, 'js');
+    })(document.documentElement);
+    $(function() {
+
+        Boompi.init();
+
+    });
+
+</script>
+</html>

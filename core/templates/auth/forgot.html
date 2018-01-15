@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="base-form-container">
+        <div class="row">
+
+        <div class="form--column base-form-holder">
+            <div class="base-form js-form-forgot">
+                <span class="form--header1 h2">Forgot Password</span>
+                <h4>It's human to forget</h4>
+                <span class="auth-alert"></span>
+                <form id="authForgotForm" class="row" method="post">
+                <input type="hidden" name="next" value="{{ next }}" id="nxt_url"/>
+                {{ form.csrf_token }}
+                    <div class="form-group --12">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="space-1"> <a href="{{ url_for('home.login') }}">I remember now</a></div>
+                    <hr>
+                        <button class="ui-button ui-button--primary ui-button--large ui-button--block" type="submit">Submit</button>
+                        <i class="rq-loading">loading...</i>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        </div>
+    </div>
+
+{% endblock %}

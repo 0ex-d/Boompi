@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="base-form-container">
+        <div class="row">
+
+        <div class="form--column base-form-holder">
+            <div class="base-form js-form-signin">
+                <span class="form--header1 h2">Log in</span>
+                <h4>Experience music like never</h4>
+                <span class="auth-alert"></span>
+                <form id="authSigninForm" class="row" method="post">
+                <input type="hidden" name="next" value="{{ next }}" id="nxt_url"/>
+                {{ form.csrf_token }}
+                    <div class="col-xs-12 pd-1">
+                        <label for="email">Email:</label>
+                        <input type="email" name="username" placeholder="Email Address" required>
+                    </div>
+                    <input type="text" name="crf" class="noshow" value="">
+                    <div class="col-xs-12 pd-1">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <button class="ui-button ui-button--primary ui-button--large ui-button--block" type="submit" disabled>Log in</button>
+                    <i class="frm-abiet">loading...</i>
+                    
+                    <div class="space-1"><a href="{{ url_for('home.forgot') }}">I forgot my password</a></div>
+                    <div class="space-1">I don't have an account <a href="{{ url_for('home.register') }}">Sign up</a>.</div>
+
+                        
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        </div>
+    </div>
+
+{% endblock %}

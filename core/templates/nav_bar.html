@@ -1,0 +1,61 @@
+<nav class="masthead">
+                <div class="masthead-inner-wrap">
+                    <span class="masthead-logo">
+                        <!--span class="masthead-logo-loading"></span-->
+                        <a href="{{ url_for('home.index') }}"> {{config.BRAND}}</a>
+                    </span>
+
+                    <a class="masthead-search-toggle" href="https://www.boompi.com/search" id="js-masthead-nav-search-button">Search</a>
+
+                    <form class="masthead-search-form disclose-hide" id="masthead-search" action="https://www.boompi.com/search" method="get">
+                        <div class="masthead-search-inner-wrap"><label for="masthead-search-field" class="sr-only">Search</label><input id="masthead-search-field" class="masthead-search-field" type="text" name="q" placeholder="Search for music…"><button class="masthead-search-submit" type="submit">Search</button></div>
+                    </form>
+
+                    <div class="visible-xs">
+                        <button class="masthead-hamburger-toggle" id="js-masthead-nav-button">Toggle navigation</button>
+                        <ul class="masthead-nav disclose-hide" id="masthead-nav">
+                            <li class="masthead-nav-item"><a class="masthead-nav-control" href="{{ url_for('home.index') }}" data-analytics-action="NavigationLink" data-analytics-label="live">Top 50</a></li>
+                            <li class="masthead-nav-item"><a class="masthead-nav-control" href="/music" data-analytics-action="NavigationLink" data-analytics-label="music">Features</a></li>
+                            <li class="masthead-nav-item"><a class="masthead-nav-control" href="/events" data-analytics-action="NavigationLink" data-analytics-label="events">Artistes</a></li>
+                            {% if not current_user.is_authenticated %}
+                            <li class="masthead-nav-item">
+                                <a class="masthead-nav-control" href="{{ url_for('home.register') }}" data-analytics-action="SignUpClick">Join</a>
+                            </li>
+                            <li class="masthead-nav-item">
+                                <a class="masthead-nav-control" href="{{ url_for('home.login') }}">Login</a>
+                            </li>
+                            {% endif %}
+                          {% if current_user.is_authenticated %}
+                            {% if current_user and current_user.has_role('admin') or current_user.has_role('moderator') %}<li><a href="{{ url_for('admin.index') }}"><i class="icon icon-edit"></i>Dashboard</a></li>{% endif %}
+                            <li><a href="{{ url_for('home.logout') }}"><i class="icon icon-logout"></i>Log Out</a></li>
+                          {% endif %}
+                        </ul>
+                    </div>
+
+                    <div class="navlist navlist--more masthead-nav hidden-xs" data-require="components/primary-nav" data-more-string="More…">
+                        <ul class="js-navlist-items navlist-items" aria-label="Primary navigation" style="position: relative;">
+                            <li class="masthead-nav-item"><a class="masthead-nav-control" href="{{ url_for('home.index') }}" data-analytics-action="NavigationLink" data-analytics-label="live">Top 50</a></li>
+                            <li class="masthead-nav-item"><a class="masthead-nav-control" href="/music" data-analytics-action="NavigationLink" data-analytics-label="music">Features</a></li>
+                            <li class="masthead-nav-item"><a class="masthead-nav-control" href="/events" data-analytics-action="NavigationLink" data-analytics-label="events">Artistes</a></li>
+                        </ul>
+                        <div class="navlist-more-wrap"><button aria-expanded="false" aria-controls="bb6c8e14-a384-401c-9fd0-ce328b7232ee" data-disclose-collapsing-nav="true" class="navlist-more navlist-more--hidden">More…</button>
+                            <ul aria-label="Primary navigation" class="disclose-hide navlist-hidden-list" id="bb6c8e14-a384-401c-9fd0-ce328b7232ee">
+                                <li style="display: none;"><a href="{{ url_for('home.index') }}" data-analytics-action="NavigationLink" data-analytics-label="live">Live</a></li>
+                                <li style="display: none;"><a href="/music" data-analytics-action="NavigationLink" data-analytics-label="music">Music</a></li>
+                                <li style="display: none;"><a href="/events" data-analytics-action="NavigationLink" data-analytics-label="events">Events</a></li>
+                                <li style="display: none;"><a href="/features" data-analytics-action="NavigationLink" data-analytics-label="features">Features</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% if not current_user.is_authenticated %}
+                    <ul class=" site-auth site-auth--anon hidden-xs ">
+                        <li class="site-auth-item"><a class="site-auth-control" href="{{ url_for('home.register') }}" data-analytics-action="SignUpClick">Join</a></li>
+                        <li class="site-auth-item"><a class="site-auth-control" href="{{ url_for('home.login') }}">Login</a></li>
+                    </ul>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                            {% if current_user and current_user.has_role('admin') or current_user.has_role('moderator') %}<li><a href="{{ url_for('admin.index') }}"><i class="icon icon-edit"></i>Dashboard</a></li>{% endif %}
+                            <li><a href="{{ url_for('home.logout') }}"><i class="icon icon-logout"></i>Log Out</a></li>
+                    {% endif %}
+                </div>
+            </nav>

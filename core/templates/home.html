@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block hero_slider %} <div class="hero-slider" id="js-featured-hm-carols"></div> {% endblock %}
+
+{% block content_top %}
+    <div class="content-top-inner-wrap">
+        <div class="container content-top-lower">
+            <h1 class="content-top-header"> Top 50 Gospel Music</h1>
+            <nav class="navlist secondary-nav navlist--more" aria-label="Secondary navigation" data-require="components/collapsing-nav" data-more-string="More…">
+                <ul class="navlist-items" id="js-navlist-genre-items" style="position: relative;">
+                </ul>
+                <div class="navlist-more-wrap"><button aria-expanded="false" aria-controls="d27471d0-49b3-4340-860c-2f86afbbee59" data-disclose-collapsing-nav="true" class="navlist-more navlist-more--hidden">More…</button>
+                    <ul class="disclose-hide navlist-hidden-list" id="d27471d0-49b3-4340-860c-2f86afbbee59">
+                        <li style="display: none;">
+                            <a href="">Gospel Charts<span>(current section)</span></a>
+                        </li>
+                        <li style="display: none;">
+                            <a href="s">Nigeria</a>
+                        </li>
+                        <li style="display: none;">
+                            <a href="">Ghanaian</a>
+                        </li>
+                        <li style="display: none;">
+                            <a href="">America</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+
+
+<nav class="music-nav hide">
+                        <p class="music-nav-description">Jump to:</p>
+                        <ul class="music-nav-items">
+                            <li class="music-nav-item music-nav-item--mobile"><a href="/music#top-artists">Top Artists</a></li>
+                            <li class="music-nav-item"><a href="/music#top-releases">Top New Releases</a></li>
+                            <li class="music-nav-item"><a href="/music#most-loved">Most Loved</a></li>
+                        </ul>
+                    </nav>
+
+                    <section class="music-charts">
+
+                        <div class="music-charts-row">
+                            <div class="music-charts-col">
+                                <header>
+                                    <a id="top-tracks" class="offset-section-anchor"></a>
+                                    <h2 class="buffer-reset"><span>Popular</span> Tracks</h2>
+                                </header>
+                                <table class="globalchart" style="background-image: url({{ url_for('static', filename='uploads/270463-300x300.jpg') }});">
+                                    <thead class="sr-only">
+                                        <tr>
+                                            <th>Rank</th>
+                                            <th>Cover</th>
+                                            <th>Track name</th>
+                                            <th>Artiste name</th>
+                                            <th>Listeners</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="js-ready-tracks">
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="music-charts-col">
+                                <header>
+                                    <a id="top-artists" class="offset-section-anchor"></a>
+                                    <h2 class="buffer-reset"><span>Ranking</span> Artistes</h2>
+                                </header>
+                                <table class="globalchart" style="background-image: url({{ url_for('static', filename='uploads/tr657.jpg') }});">
+                                    <thead class="sr-only">
+                                        <tr>
+                                            <th>Rank</th>
+                                            <th>Avatar</th>
+                                            <th>Artist name</th>
+                                            <th>Listeners</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="js-ready-artistes">
+
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                        </div>
+
+                    </section>
+
+{% endblock %}
